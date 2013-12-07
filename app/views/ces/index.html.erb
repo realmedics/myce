@@ -1,0 +1,29 @@
+<h1>Listing ces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Hours</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ces.each do |ce| %>
+      <tr>
+        <td><%= ce.title %></td>
+        <td><%= ce.hours %></td>
+        <td><%= link_to 'Show', ce %></td>
+        <td><%= link_to 'Edit', edit_ce_path(ce) %></td>
+        <td><%= link_to 'Destroy', ce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ce', new_ce_path %>
