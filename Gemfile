@@ -15,6 +15,7 @@ gem 'simple_form'
 gem "devise", "~> 3.2.2"
 gem 'therubyracer', :platform=>:ruby
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

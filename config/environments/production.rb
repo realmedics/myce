@@ -81,4 +81,5 @@ Celog::Application.configure do
   # Required for Heroku
   # Note: set this to actual host when live
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 end
