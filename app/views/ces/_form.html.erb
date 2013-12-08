@@ -1,9 +1,19 @@
-<%= simple_form_for(@ce) do |f| %>
+<%= simple_form_for @ce, html: { multipart: true } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :hours %>
+  </div>
+<p>
+  <strong>Certificate (Preview)</strong>
+</p>
+<p>
+  <%= image_tag @ce.cert.url(:large) %>
+</p>
+
+  <div class="form-inputs">
+    <%= f.file_field :cert %>
   </div>
 
   <div class="form-actions">

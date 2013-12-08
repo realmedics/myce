@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207235144) do
+ActiveRecord::Schema.define(version: 20131208152632) do
 
   create_table "ces", force: true do |t|
     t.string   "title"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20131207235144) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "cert_file_name"
+    t.string   "cert_content_type"
+    t.integer  "cert_file_size"
+    t.datetime "cert_updated_at"
   end
 
   add_index "ces", ["user_id"], name: "index_ces_on_user_id"

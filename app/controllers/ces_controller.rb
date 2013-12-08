@@ -1,6 +1,7 @@
 class CesController < ApplicationController
   before_action :set_ce, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :show, :edit, :update, :destroy]
   # GET /ces
   # GET /ces.json
   def index
@@ -14,7 +15,7 @@ class CesController < ApplicationController
 
   # GET /ces/new
   def new
-    @ce = Ce.new
+    @ce = current_user.ces.build
   end
 
   # GET /ces/1/edit
@@ -24,7 +25,7 @@ class CesController < ApplicationController
   # POST /ces
   # POST /ces.json
   def create
-    @ce = Ce.new(ce_params)
+    @ce = current_user.ces.build(ce_params)
 
     respond_to do |format|
       if @ce.save
@@ -67,8 +68,13 @@ class CesController < ApplicationController
       @ce = Ce.find(params[:id])
     end
 
+    def correct_user
+      @ce = current_user.ces.find_by(id: params[:id])
+      redirect_to ces_path, notice: "Not authorized to edit this CE" if @ce.nil?
+    end  
+      
     # Never trust parameters from the scary internet, only allow the white list through.
     def ce_params
-      params.require(:ce).permit(:title, :hours)
+      params.require(:ce).permit(:title, :hours, :cert)
     end
 end
