@@ -1,37 +1,23 @@
 <h1>Listing ces</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Certificate</th>
-      <th>Title</th>
-      <th>User</th>
-      <th>Hours</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @ces.each do |ce| %>
-    <tr>
-      <% if ce.user == current_user %>
-        <td><%= image_tag ce.cert.url(:thumb) %></td>
-        <td><%= ce.title %></td>
-        <td><%= ce.user.email %></td>
-        <td><%= ce.hours %></td>
-        <td><%= link_to 'Show', ce %></td>
-        <td><%= link_to 'Edit', edit_ce_path(ce) %></td>
-        <td><%= link_to 'Destroy', ce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 <% if user_signed_in? %>
   <%= link_to 'New Ce', new_ce_path %>
 <% end %>
+<div id="ces" class="transitions-enabled">
+<% @ces.each do |ce| %>
+  <div id="box" class="box panel panel-default">
+      <% if ce.user == current_user %>
+        <%= image_tag ce.cert.url(:thumb) %>
+          <div class="panel-body">
+            <%= ce.title %>
+            <%= ce.user.email %>
+            <%= ce.hours %>
+            <%= link_to 'Show', ce %>
+            <%= link_to 'Edit', edit_ce_path(ce) %>
+            <%= link_to 'Destroy', ce, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
 
